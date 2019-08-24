@@ -23,9 +23,9 @@
     aws))
 
 (comment
-  (defonce athena-connection (-> (get-config)
+  (defonce athena-connection (-> (get-config) ; Make sure you've used your own
                                  aws-config
-                                 (athena/get-connection)))
+                                 athena/get-connection))
 
   (jdbc/execute! athena-connection
                  ["select count(*) as num_records from my_db.my_table"]))
