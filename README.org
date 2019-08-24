@@ -1,0 +1,28 @@
+* /sk-aws-athena/
+
+A Starter Kit for AWS Athena exploration via Clojure.
+Clone, point to your AWS account, and explore your data.
+
+* Prerequisites
+- AWS access with appropriate credentials
+- AWS suggested JDBC library as mentioned at [[https://docs.aws.amazon.com/athena/latest/ug/connect-with-jdbc.html][here]]
+  - You're required to download the /jar/ pointed to there and save it locally. Accordingly, update [[file:project.clj][project.clj]].
+
+* Usage
+
+Run the REPL
+
+#+BEGIN_SRC bash
+  lein repl
+#+END_SRC
+
+#+BEGIN_SRC clojure
+  ;; ns sk-aws-athena.core
+
+  (defonce athena-connection (-> (get-config)
+                                 aws-config
+                                 (athena/get-connection)))
+
+  (jdbc/execute! athena-connection
+                 ["select count(*) as num_records from my_db.my_table"])
+#+END_SRC
