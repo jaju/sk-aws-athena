@@ -13,7 +13,7 @@
         region             (:region opts-map)
         s3-output-location (-> opts-map :athena :s3-output-location)]
     (format
-      "jdbc:awsathena://AwsRegion=%s;User=%s;Password=%s;S3OutputLocation=%s"
+      "jdbc:awsathena://AwsRegion=%s;User=%s;Password=%s;S3OutputLocation=%s;UseResultsetStreaming=1"
       region
       user
       password
